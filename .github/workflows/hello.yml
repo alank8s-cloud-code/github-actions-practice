@@ -14,9 +14,6 @@ jobs:
       - name: Print Greeting
         run: echo "Hello from Github Actions!"
 
-      - name: Intentional Failure
-        run: lsls
-
       - name: Print the current data and time
         run: |
           echo "Current date and time: $(date)"
