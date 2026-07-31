@@ -14,16 +14,21 @@ jobs:
       - name: Print Greeting
         run: echo "Hello from Github Actions!"
 
+      - name: Intentional Failure
+        run: exit 1
+
       - name: Print the current data and time
         run: |
           echo "Current date and time: $(date)"
       - name: Name of the branch that triggered the workflow
         run: |
           echo "Branch name: ${{ github.ref_name}}"
+
       - name: list the files in the repository
         run: |
           echo "Files in the repository:"
           ls -la
+
       - name: Print the Operating system and version
         run: |
           echo "Opertating System: $(uname -s)"
