@@ -1,0 +1,31 @@
+name: My first github workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v6
+
+      - name: Print Greeting
+        run: echo "Hello from Github Actions!"
+
+      - name: Print the current data and time
+        run: |
+          echo "Current date and time: $(date)"
+      - name: Name of the branch that triggered the workflow
+        run: |
+          echo "Branch name: ${{ github.ref_name}}"
+
+      - name: list the files in the repository
+        run: |
+          echo "Files in the repository:"
+          ls -la
+
+      - name: Print the Operating system and version
+        run: |
+          echo "Opertating System: $(uname -s)"
+          echo "Operating System version: $(uname -r)"
