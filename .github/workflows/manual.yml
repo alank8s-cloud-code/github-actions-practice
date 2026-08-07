@@ -20,3 +20,6 @@ jobs:
 
       - name: Show the selected environment
         run: echo "Deploy to ${{ inputs.environment }}"
+
+      - name: Manual Trigger
+        run: echo "Manual trigger workflow executed successfully!"
