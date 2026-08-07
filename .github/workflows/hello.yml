@@ -26,6 +26,9 @@ jobs:
         run: |
           echo "Files in the repository:"
           ls -la
+      - name: print the current user
+        run: |
+          echo "Current user: $(whoami)"
 
       - name: Print the Operating system and version
         run: |
