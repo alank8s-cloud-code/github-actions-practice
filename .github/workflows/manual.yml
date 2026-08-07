@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Select the deployment evironment "
+        description: "Select the deployment environment"
         required: true
         type: choice
         options:
@@ -16,7 +16,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Show the selected environment"
-        run: echo "Deploy to ${{ inputs.environments }}"
+      - name: Show the selected environment
+        run: echo "Deploy to ${{ inputs.environment }}"
