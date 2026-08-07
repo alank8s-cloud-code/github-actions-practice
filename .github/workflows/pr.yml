@@ -14,3 +14,8 @@ jobs:
 
       - name: Unit test
         run: echo "Running test...."
+
+      - name: system info
+        run: |
+          echo "HI everyone"
+          echo "Current data: $(date)"
