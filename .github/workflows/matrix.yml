@@ -29,9 +29,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # - name: Print OS
-      #   run: |
-      #     echo "Operating System: ${{matrix.os}}"
-
-      - name: print python-version
-        run: python --version
+      - name: Print details
+        run: |
+          echo "Operating System: ${{ "runner.os }}"
+          echo "Runner: ${{ matrix.os }}"
+          echo "Python version: ${{ matrix.python-version t}}"
