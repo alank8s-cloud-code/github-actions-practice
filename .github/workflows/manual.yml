@@ -2,14 +2,14 @@ name: Manual Trigger
 
 on:
   workflow_dispatch:
-  inputs:
-    environment:
-      description: "Select the deployment evironment "
-      required: true
-      type: choice
-      options:
-        - staging
-        - production
+    inputs:
+      environment:
+        description: "Select the deployment evironment "
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
 
 jobs:
   Manual:
