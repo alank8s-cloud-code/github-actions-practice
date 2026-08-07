@@ -33,4 +33,4 @@ jobs:
         run: |
           echo "Operating System: ${{ runner.os }}"
           echo "Runner: ${{ matrix.os }}"
-          echo "Python version: ${{ matrix.python-version t}}"
+          echo "Python version: ${{ matrix.python-version }}"
