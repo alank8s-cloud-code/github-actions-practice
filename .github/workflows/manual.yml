@@ -1,0 +1,22 @@
+name: Manual Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the deployment environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  Manual:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Show the selected environment
+        run: echo "Deploy to ${{ inputs.environment }}"
