@@ -19,3 +19,6 @@ jobs:
         run: |
           echo "HI everyone"
           echo "Current data: $(date)"
+      - name: PR check for running branch
+        run: |
+          echo "PR check running for branch: {${github.ref_name}}"
