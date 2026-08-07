@@ -40,7 +40,7 @@ jobs:
           echo "Python version: ${{ matrix.python-version }}"
 
       - name: Simulate failure
-        if: matrix.os == ' windows-latest ' && matrix.python-verson == '3.10'
+        if: matrix.os == 'windows-latest' && matrix.python-verson == '3.10'
         run: |
           echo "This job is failing intentionally!"
           exit 1
