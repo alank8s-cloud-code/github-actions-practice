@@ -31,6 +31,6 @@ jobs:
 
       - name: Print details
         run: |
-          echo "Operating System: ${{ "runner.os }}"
+          echo "Operating System: ${{ runner.os }}"
           echo "Runner: ${{ matrix.os }}"
           echo "Python version: ${{ matrix.python-version t}}"
