@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - synchronize
 
 jobs:
   test:
@@ -19,3 +22,6 @@ jobs:
         run: |
           echo "HI everyone"
           echo "Current data: $(date)"
+      - name: PR check for running branch
+        run: |
+          echo "PR check running for branch: ${{github.head_ref}}"
