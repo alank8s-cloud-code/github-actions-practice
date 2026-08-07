@@ -7,7 +7,7 @@ on:
 
 jobs:
   greet:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout the Repository
         uses: actions/checkout@v6
@@ -32,5 +32,5 @@ jobs:
 
       - name: Print the Operating system and version
         run: |
-          echo "Opertating System: $(uname -s)"
+          echo "Operating System: $(uname -s)"
           echo "Operating System version: $(uname -r)"
