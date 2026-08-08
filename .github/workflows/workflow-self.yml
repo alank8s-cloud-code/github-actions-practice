@@ -12,9 +12,9 @@ jobs:
 
       - name: print details
         run: |
-          echo " The OS name: $(uname -s)
-          echo " The runner's hostname: $(hostname)
-          echo " The current user running the job: $(whoami)
+          echo " The OS name: $(uname -s)"
+          echo " The runner's hostname: $(hostname)"
+          echo " The current user running the job: $(whoami)"
 
   window-job:
     runs-on: windows-latest
@@ -33,6 +33,6 @@ jobs:
     steps:
       - name: print details
         run: |
-          echo " The OS name: $( sw_vers)
-          echo " The runner's hostname: $(hostname)
-          echo " The current user running the job: $(whoami)
+          echo " The OS name: $( sw_vers) "
+          echo " The runner's hostname: $(hostname)"
+          echo " The current user running the job: $(whoami)"
