@@ -19,6 +19,6 @@ jobs:
         run: |
           echo "The hostname of machine: $(hostname)"
           echo "The Working directory: $(pwd)"
-          echo "Create file name hello.txt"
+          echo "---Create file name hello.txt---"
           touch hello.txt
           echo "File is created successfully: $(ls -l hello.txt)"
