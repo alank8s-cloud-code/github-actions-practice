@@ -25,9 +25,9 @@ jobs:
           # echo " The runner's hostname: $(hostname)"
           # echo " The current user running the job: $(whoami)"
           echo " Docker version: $(docker -v)"
-          echo " python  version: $(python3 --version)
-          echo " Node version: $(node -v)
-          echo " Git version: $(git -v)
+          echo " python  version: $(python3 --version)"
+          echo " Node version: $(node -v)"
+          echo " Git version: $(git -v)"
 
   # window-job:
   #   needs: linux-job
