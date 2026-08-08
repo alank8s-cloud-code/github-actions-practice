@@ -2,6 +2,15 @@ name: Three Jobs run on the workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the enviroment to Deploy this workflow"
+        required: true
+        type: choice
+        options:
+          - build
+          - test
+          - deploy
 
 jobs:
   linux-job:
