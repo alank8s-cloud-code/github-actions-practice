@@ -1,0 +1,23 @@
+name: Self-Hosted Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the Environment to Deploy app on the Self-Hosted Runner"
+        required: true
+        type: choice
+        options:
+          - Test
+          - Deploy
+
+jobs:
+  Self-Hosted:
+    runs-on: self-hosted
+    steps:
+      - name: Some task
+        run: |
+          echo "The hostname of machine: $(hostname)"
+          echo "The Working directory $(pwd)"
+          echo "Create file name hello.txt: $(touch hello.txt)"
+          echo "File is exist: $(ls -l hello.txt)"
