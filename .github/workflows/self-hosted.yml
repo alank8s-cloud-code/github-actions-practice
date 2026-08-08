@@ -13,12 +13,15 @@ on:
 
 jobs:
   Self-Hosted:
-    runs-on: [self-hosted, my-linux-runner]
+    runs-on: my-linux-runner
     steps:
       - name: Some task
         run: |
           echo "Running on self-hosted runner"
           echo "Runner label: my-linux-runner"
+          echo "Runner name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner architecture: $RUNNER_ARCH"
           # echo "The hostname of machine: $(hostname)"
           # echo "The Working directory: $(pwd)"
            # echo "---Create file name hello.txt---"
