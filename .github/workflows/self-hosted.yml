@@ -18,8 +18,9 @@ jobs:
       - name: Some task
         run: |
           echo "Running on self-hosted runner"
-          echo "The hostname of machine: $(hostname)"
-          echo "The Working directory: $(pwd)"
+          echo "Runner label: my-linux-runner"
+          # echo "The hostname of machine: $(hostname)"
+          # echo "The Working directory: $(pwd)"
            # echo "---Create file name hello.txt---"
            # touch hello.txt
            # echo "File is created successfully: $(ls -l hello.txt)"
