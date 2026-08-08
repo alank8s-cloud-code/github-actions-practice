@@ -26,6 +26,7 @@ jobs:
           echo " The current user running the job: $(whoami)"
 
   window-job:
+    needs: linux-job
     runs-on: windows-latest
     steps:
       - name: The OS name
@@ -38,6 +39,7 @@ jobs:
         run: whoami
 
   mac-job:
+    needs: window-job
     runs-on: macos-latest
     steps:
       - name: print details
