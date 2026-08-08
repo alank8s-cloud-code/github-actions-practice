@@ -1,0 +1,38 @@
+name: Three Jobs run on the workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: print details
+        run: |
+          echo " The OS name: $(uname -s)
+          echo " The runner's hostname: $(hostname)
+          echo " The current user running the job: $(whoami)
+
+  window-job:
+    runs-on: windows-latest
+    steps:
+      - name: The OS name
+        run: systeminfo | findstr /B /C:"OS Name"
+
+      - name: The runner's hostname
+        run: hostname
+
+      - name: The current user running the job
+        run: whoami
+
+  mac-job:
+    runs-on: macos-latest
+    steps:
+      - name: print details
+        run: |
+          echo " The OS name: $( sw_vers)
+          echo " The runner's hostname: $(hostname)
+          echo " The current user running the job: $(whoami)
