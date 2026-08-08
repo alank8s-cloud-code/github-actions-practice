@@ -21,29 +21,33 @@ jobs:
 
       - name: print details
         run: |
-          echo " The OS name: $(uname -s)"
-          echo " The runner's hostname: $(hostname)"
-          echo " The current user running the job: $(whoami)"
+          # echo " The OS name: $(uname -s)"
+          # echo " The runner's hostname: $(hostname)"
+          # echo " The current user running the job: $(whoami)"
+          echo " Docker version: $(docker -v)"
+          echo " python  version: $(python3 --version)
+          echo " Node version: $(node -v)
+          echo " Git version: $(git -v)
 
-  window-job:
-    needs: linux-job
-    runs-on: windows-latest
-    steps:
-      - name: The OS name
-        run: systeminfo | findstr /B /C:"OS Name"
+  # window-job:
+  #   needs: linux-job
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: The OS name
+  #       run: systeminfo | findstr /B /C:"OS Name"
 
-      - name: The runner's hostname
-        run: hostname
+  #     - name: The runner's hostname
+  #       run: hostname
 
-      - name: The current user running the job
-        run: whoami
+  #     - name: The current user running the job
+  #       run: whoami
 
-  mac-job:
-    needs: window-job
-    runs-on: macos-latest
-    steps:
-      - name: print details
-        run: |
-          echo " The OS name: $( sw_vers) "
-          echo " The runner's hostname: $(hostname)"
-          echo " The current user running the job: $(whoami)"
+  # mac-job:
+  #   needs: window-job
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: print details
+  #       run: |
+  #         echo " The OS name: $( sw_vers) "
+  #         echo " The runner's hostname: $(hostname)"
+  #         echo " The current user running the job: $(whoami)"
