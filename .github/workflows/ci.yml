@@ -18,10 +18,12 @@ jobs:
       - name: Check out source repository
         uses: actions/checkout@v6
 
-      - name: install the python
+      - name: install the python and Enable Caching
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
 
       - name: Check the python version
         run: python3 --version
