@@ -35,6 +35,8 @@ jobs:
           flake8 tests/test_calculator.py
 
       - name: Test the function
+        env:
+          PYTHONPATH: .
         run: pytest tests/test_calculator.py
 
       - name: after function test run the main code
