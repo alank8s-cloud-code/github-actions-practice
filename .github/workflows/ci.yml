@@ -26,8 +26,6 @@ jobs:
       - name: Check the python version
         run: python3 --version
 
-      - name: Install the auditing tool
-        run: pip instal
       - name: Install auditing tool(scan the dependency)
         run: |
           pip install --upgrade pip && pip install pip-audit
