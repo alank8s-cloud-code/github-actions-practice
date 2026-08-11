@@ -1,136 +1,218 @@
-# github-actions-practice
-
 # Mini Project 3 – Build Your Own Self-Hosted CI Runner
-=====================================================
 
-# 🎯 Project Goal
----------------
+## 🎯 Project Goal
 
 Create your own self-hosted GitHub Actions runner on a Linux machine.
 
 Your final architecture should be:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Developer      |      | git push      v  GitHub Repository      |      v  GitHub Actions      |      | runs-on: self-hosted      v  Your Linux Machine      |      +── Docker      +── Python      +── Git      +── Shell   `
+```text
+Developer
+    |
+    | git push
+    v
+GitHub Repository
+    |
+    v
+GitHub Actions
+    |
+    | runs-on: self-hosted
+    v
+Your Linux Machine
+    |
+    +── Docker
+    +── Python
+    +── Git
+    +── Shell
+```
 
 This project extends the Day-42 runner tasks into a small real-world DevOps environment.
 
-🧠 What You Will Learn
-======================
+---
+
+# 🧠 What You Will Learn
 
 You will understand:
 
-*   GitHub-hosted runners
-    
-*   Self-hosted runners
-    
-*   Runner registration
-    
-*   Runner labels
-    
-*   Runner services
-    
-*   runs-on
-    
-*   Runner security
-    
-*   Workspace
-    
-*   Environment differences
-    
-*   Persistent machines
-    
-*   CI jobs running on your own infrastructure
-    
+- GitHub-hosted runners
+- Self-hosted runners
+- Runner registration
+- Runner labels
+- Runner services
+- `runs-on`
+- Runner security
+- Workspace
+- Environment differences
+- Persistent machines
+- CI jobs running on your own infrastructure
 
-📁 Project Structure
-====================
+---
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   self-hosted-ci/  ├── .github/  │   └── workflows/  │       └── self-hosted.yml  │  ├── scripts/  │   ├── system-info.sh  │   └── deploy.sh  │  ├── app/  │   └── app.py  │  └── README.md   `
+# 📁 Project Structure
 
-Task 1 – Understand GitHub-Hosted Runner
-========================================
+```text
+self-hosted-ci/
+├── .github/
+│   └── workflows/
+│       └── self-hosted.yml
+│
+├── scripts/
+│   ├── system-info.sh
+│   └── deploy.sh
+│
+├── app/
+│   └── app.py
+│
+└── README.md
+```
+
+---
+
+# Task 1 – Understand GitHub-Hosted Runner
 
 First run a workflow using:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   runs-on: ubuntu-latest   `
+```yaml
+runs-on: ubuntu-latest
+```
 
 Print:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   hostname  whoami  pwd  python --version  docker --version  git --version   `
+```bash
+hostname
+whoami
+pwd
+python --version
+docker --version
+git --version
+```
 
 Understand:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   GitHub     |     +── Creates runner     |     +── Runs job     |     +── Executes workflow     |     +── Removes/refreshes environment   `
+```text
+GitHub
+   |
+   +── Creates runner
+   |
+   +── Runs job
+   |
+   +── Executes workflow
+   |
+   +── Removes/refreshes environment
+```
 
-Task 2 – Prepare Your Linux Machine
-===================================
+---
+
+# Task 2 – Prepare Your Linux Machine
 
 Use:
 
-*   Your Linux computer
-    
-*   A VM
-    
-*   A cloud VM
-    
+- Your Linux computer
+- A VM
+- A cloud VM
 
 Check:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   hostname  whoami  pwd  python3 --version  git --version  docker --version   `
+```bash
+hostname
+whoami
+pwd
+python3 --version
+git --version
+docker --version
+```
 
 Record the output.
 
-Task 3 – Register Self-Hosted Runner
-====================================
+---
+
+# Task 3 – Register Self-Hosted Runner
 
 Go to:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   GitHub Repository        ↓  Settings        ↓  Actions        ↓  Runners        ↓  New self-hosted runner   `
+```text
+GitHub Repository
+      ↓
+Settings
+      ↓
+Actions
+      ↓
+Runners
+      ↓
+New self-hosted runner
+```
 
 Choose:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Linux  x64   `
+```text
+Linux
+x64
+```
 
 Follow the commands generated by GitHub.
 
 Do not manually invent the registration token.
 
-Task 4 – Start Runner
-=====================
+---
+
+# Task 4 – Start Runner
 
 Start the runner according to GitHub's generated instructions.
 
 You should eventually see:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Connected to GitHub  Listening for Jobs   `
+```text
+Connected to GitHub
+
+Listening for Jobs
+```
 
 On GitHub:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Self-hosted runner          🟢 Idle   `
+```text
+Self-hosted runner
+        🟢 Idle
+```
 
-Task 5 – Create Workflow
-========================
+---
+
+# Task 5 – Create Workflow
 
 Create:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   .github/workflows/self-hosted.yml   `
+```text
+.github/workflows/self-hosted.yml
+```
 
 Use:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   runs-on: self-hosted   `
+```yaml
+runs-on: self-hosted
+```
 
 The workflow should print:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Hostname  Username  Working directory  Operating system  Python version  Git version  Docker version   `
+```text
+Hostname
+Username
+Working directory
+Operating system
+Python version
+Git version
+Docker version
+```
 
-Task 6 – Verify It Is Your Machine
-==================================
+---
+
+# Task 6 – Verify It Is Your Machine
 
 This is the important part.
 
 Run:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   hostname   `
+```bash
+hostname
+```
 
 on your machine.
 
@@ -142,90 +224,144 @@ You should be able to say:
 
 > "This GitHub Actions job actually executed on my machine."
 
-Task 7 – Create a File
-======================
+---
+
+# Task 7 – Create a File
 
 From GitHub Actions, create:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   runner-test.txt   `
+```text
+runner-test.txt
+```
 
 Example contents:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Created by GitHub Actions   `
+```text
+Created by GitHub Actions
+```
 
 Then check your Linux machine:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   ls   `
+```bash
+ls
+```
 
 and:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   cat runner-test.txt   `
+```bash
+cat runner-test.txt
+```
 
-Task 8 – Add a Runner Label
-===========================
+---
+
+# Task 8 – Add a Runner Label
 
 Give your runner a custom label such as:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   my-linux-runner   `
+```text
+my-linux-runner
+```
 
 Now configure your workflow to target:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   self-hosted  +  my-linux-runner   `
+```text
+self-hosted
++
+my-linux-runner
+```
 
 Conceptually:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   GitHub Actions        |        | labels        v  self-hosted        +  my-linux-runner        |        v  Your Linux machine   `
+```text
+GitHub Actions
+      |
+      | labels
+      v
+self-hosted
+      +
+my-linux-runner
+      |
+      v
+Your Linux machine
+```
 
-Task 9 – Build a Small Deployment Script
-========================================
+---
+
+# Task 9 – Build a Small Deployment Script
 
 Create:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   scripts/deploy.sh   `
+```text
+scripts/deploy.sh
+```
 
 The script should:
 
-1.  Print hostname
-    
-2.  Print current user
-    
-3.  Print deployment time
-    
-4.  Create a deployment directory
-    
-5.  Copy application files
-    
-6.  Print deployment status
-    
+1. Print hostname
+2. Print current user
+3. Print deployment time
+4. Create a deployment directory
+5. Copy application files
+6. Print deployment status
 
 Example architecture:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Git Push     |     v  GitHub Actions     |     v  Self-Hosted Runner     |     v  deploy.sh     |     v  Application   `
+```text
+Git Push
+   |
+   v
+GitHub Actions
+   |
+   v
+Self-Hosted Runner
+   |
+   v
+deploy.sh
+   |
+   v
+Application
+```
 
-Task 10 – Docker Challenge
-==========================
+---
+
+# Task 10 – Docker Challenge
 
 Since this is a DevOps project, check whether Docker is available on your runner:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   docker --version   `
+```bash
+docker --version
+```
 
 Then create a workflow step that runs:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   docker ps   `
+```bash
+docker ps
+```
 
 Understand why Docker availability on your own runner can be useful.
 
-Task 11 – Compare Runners
-=========================
+---
+
+# Task 11 – Compare Runners
 
 Create this table in your notes:
 
-FeatureGitHub-HostedSelf-HostedMachine managed by??Infrastructure??Software control??Maintenance??Customization??Security responsibility??Best use case??Persistent environment??
+| Feature | GitHub-Hosted | Self-Hosted |
+|---|---|---|
+| Machine managed by | ? | ? |
+| Infrastructure | ? | ? |
+| Software control | ? | ? |
+| Maintenance | ? | ? |
+| Customization | ? | ? |
+| Security responsibility | ? | ? |
+| Best use case | ? | ? |
+| Persistent environment | ? | ? |
 
 Fill it using your own understanding.
 
-Task 12 – Stop the Runner
-=========================
+---
+
+# Task 12 – Stop the Runner
 
 Stop the runner.
 
@@ -235,69 +371,117 @@ Observe what happens.
 
 Ask yourself:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Why is the job waiting?   `
+```text
+Why is the job waiting?
+```
 
 Start the runner again.
 
 Observe:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Waiting     ↓  Runner available     ↓  Job starts   `
+```text
+Waiting
+   ↓
+Runner available
+   ↓
+Job starts
+```
 
 This is a very important concept.
 
-🔥 Advanced Challenge – Runner Labels
-=====================================
+---
+
+# 🔥 Advanced Challenge – Runner Labels
 
 Create two labels:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   self-hosted  linux  my-linux-runner  docker   `
+```text
+self-hosted
+linux
+my-linux-runner
+docker
+```
 
 Then configure workflows to target different labels.
 
 For example:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   self-hosted + docker   `
+```text
+self-hosted + docker
+```
 
 should only execute on a runner that has Docker capability.
 
-🔥 Advanced Challenge – Deployment Pipeline
-===========================================
+---
+
+# 🔥 Advanced Challenge – Deployment Pipeline
 
 Create:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   CI   ↓  Test   ↓  Build   ↓  Deploy   `
+```text
+CI
+ ↓
+Test
+ ↓
+Build
+ ↓
+Deploy
+```
 
 The final deployment job must run on your self-hosted runner.
 
 Architecture:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML                 `Git Push                      |                      v                GitHub Actions                      |            +---------+---------+            |                   |            v                   v         Test Job           Build Job            |                   |            +---------+---------+                      |                      v               Deploy Job                      |                      v            Self-Hosted Runner                      |                      v                Your Machine`
+```text
+                 Git Push
+                    |
+                    v
+              GitHub Actions
+                    |
+          +---------+---------+
+          |                   |
+          v                   v
+       Test Job           Build Job
+          |                   |
+          +---------+---------+
+                    |
+                    v
+             Deploy Job
+                    |
+                    v
+          Self-Hosted Runner
+                    |
+                    v
+              Your Machine
+```
 
-❓ Questions You Must Answer
-===========================
+---
 
-### 1\. What is a runner?
+# ❓ Questions You Must Answer
 
-### 2\. Who manages GitHub-hosted runners?
+### 1. What is a runner?
 
-### 3\. Who manages self-hosted runners?
+### 2. Who manages GitHub-hosted runners?
 
-### 4\. What does runs-on do?
+### 3. Who manages self-hosted runners?
 
-### 5\. Why use self-hosted runners?
+### 4. What does `runs-on` do?
 
-### 6\. What are the security risks?
+### 5. Why use self-hosted runners?
 
-### 7\. Why are labels useful?
+### 6. What are the security risks?
 
-### 8\. What happens when the runner is offline?
+### 7. Why are labels useful?
 
-### 9\. Why can self-hosted runners be useful for Docker deployments?
+### 8. What happens when the runner is offline?
 
-### 10\. What happens to files created by a self-hosted runner?
+### 9. Why can self-hosted runners be useful for Docker deployments?
 
-🚨 Security Challenge
-=====================
+### 10. What happens to files created by a self-hosted runner?
+
+---
+
+# 🚨 Security Challenge
 
 Think about this carefully.
 
@@ -305,7 +489,9 @@ A GitHub Actions job can execute shell commands.
 
 Therefore:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   run: some-command   `
+```yaml
+run: some-command
+```
 
 is executing commands on your machine when using a self-hosted runner.
 
@@ -315,38 +501,52 @@ Ask yourself:
 
 Research:
 
-*   Untrusted code
-    
-*   Pull Request security
-    
-*   Secrets
-    
-*   Runner isolation
-    
-*   Runner cleanup
-    
-*   Ephemeral runners
-    
+- Untrusted code
+- Pull Request security
+- Secrets
+- Runner isolation
+- Runner cleanup
+- Ephemeral runners
 
 Do not expose sensitive credentials on your runner.
 
-✅ Expected Output
-=================
+---
+
+# ✅ Expected Output
 
 GitHub should show:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Settings     ↓  Actions     ↓  Runners     ↓  🟢 my-linux-runner   `
+```text
+Settings
+   ↓
+Actions
+   ↓
+Runners
+   ↓
+🟢 my-linux-runner
+```
 
 And the workflow should show:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Self Hosted Job        ✅   `
+```text
+Self Hosted Job
+      ✅
+```
 
 The job output should contain your machine's:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Hostname  Username  Python  Git  Docker  Working Directory   `
+```text
+Hostname
+Username
+Python
+Git
+Docker
+Working Directory
+```
 
-🎓 What You Should Understand
-=============================
+---
+
+# 🎓 What You Should Understand
 
 After completing this project, you should be able to explain:
 
@@ -354,17 +554,51 @@ After completing this project, you should be able to explain:
 
 You should also understand why:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   runs-on: self-hosted   `
+```yaml
+runs-on: self-hosted
+```
 
 is fundamentally different from:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   runs-on: ubuntu-latest   `
+```yaml
+runs-on: ubuntu-latest
+```
 
-🚀 Final Challenge
-==================
+---
+
+# 🚀 Final Challenge
 
 Build this complete pipeline:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Developer      |      | git push      v  GitHub      |      v  CI Workflow      |      +───────────────+      |               |      v               v  Unit Tests        Lint      |               |      +───────+───────+              |              v            Build              |              v         Self-Hosted            Runner              |              v          Docker Build              |              v          Application   `
+```text
+Developer
+    |
+    | git push
+    v
+GitHub
+    |
+    v
+CI Workflow
+    |
+    +───────────────+
+    |               |
+    v               v
+Unit Tests        Lint
+    |               |
+    +───────+───────+
+            |
+            v
+          Build
+            |
+            v
+       Self-Hosted
+          Runner
+            |
+            v
+        Docker Build
+            |
+            v
+        Application
+```
 
 If you can build and explain this pipeline yourself, you have moved beyond simply following GitHub Actions tutorials.
