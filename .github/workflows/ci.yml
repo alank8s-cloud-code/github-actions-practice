@@ -26,8 +26,15 @@ jobs:
       - name: Check the python version
         run: python3 --version
 
-      - name: Install the Dependencies
-        run: pip install --upgrade pip && pip install -r requirements.txt
+      - name: Install the auditing tool
+        run: pip instal
+      - name: Install auditing tool(scan the dependency)
+        run: |
+          pip install --upgrade pip && pip install pip-audit
+          pip-audit -r requirements.txt
+
+      - name: after scan the dependency install the dependency
+        run: pip install -r requirements.txt
 
       - name: Run Flake8 code analysis
         run: |
