@@ -37,7 +37,7 @@ jobs:
           flake8 tests/test_calculator.py
 
       - name: Test the function
-        run: pytest test_calculator.py
+        run: pytest tests/test_calculator.py
 
       - name: after function test run the main code
         run: python3 app/calculator.py
