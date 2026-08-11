@@ -22,8 +22,8 @@ jobs:
           echo "Runner name: $RUNNER_NAME"
           echo "Runner OS: $RUNNER_OS"
           echo "Runner architecture: $RUNNER_ARCH"
-          # echo "The hostname of machine: $(hostname)"
-          # echo "The Working directory: $(pwd)"
-           # echo "---Create file name hello.txt---"
-           # touch hello.txt
-           # echo "File is created successfully: $(ls -l hello.txt)"
+          echo "The hostname of machine: $(hostname)"
+          echo "The Working directory: $(pwd)"
+          echo "---Create file name hello.txt---"
+          touch hello.txt
+          echo "File is created successfully: $(ls -l hello.txt)"
