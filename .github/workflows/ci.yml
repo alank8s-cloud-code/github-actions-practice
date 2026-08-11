@@ -1,0 +1,41 @@
+name: Python-calcultor-CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select which env use to run this workflow"
+        required: true
+        type: choice
+        options:
+          - test
+          - deploy
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v6
+
+      - name: install the python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the python version
+        run: python3 --version
+
+      - name: Install the Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Flake8 code analysis
+        run: |
+          flake8 app/calculator.py
+          flake8 tests/test_calculator.py
+
+      - name: Test the function
+        run: pytest test_calculator.py
+
+      - name: after function test run the main code
+        run: python3 app/calculator.py
