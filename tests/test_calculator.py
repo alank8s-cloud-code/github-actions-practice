@@ -1,7 +1,7 @@
 import pytest
 
 from app.calculator import add, subtract, multiply, divide
-393
+
 
 def test_add():
     assert add(10, 5) == 15
