@@ -13,7 +13,7 @@ jobs:
           echo "this workflow only run when branch is main: ${{github.ref}}"
 
       - name: failing step
-        run: edho "hei"
+        run: e "hei"
         continue-on-error: true
 
       - name: run when previous step failed
