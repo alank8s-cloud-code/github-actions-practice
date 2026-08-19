@@ -27,5 +27,5 @@ jobs:
           VERSION: 1.0.0
         run: |
           echo "APP_NAME: $APP_NAME"
-          ehco "ENVIRONMENT: $ENVIRONMENT"
+          echo "ENVIRONMENT: $ENVIRONMENT"
           echo "VERSION: $VERSION"
