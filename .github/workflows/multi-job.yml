@@ -1,4 +1,4 @@
-name: multiple-jobs runs
+name: multiple-jobs workflow
 
 on:
   workflow_dispatch:
