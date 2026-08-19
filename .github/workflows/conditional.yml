@@ -8,7 +8,7 @@ on:
 jobs:
   conditional-job:
     runs-on: ubuntu-latest
-eps:
-  - name: Acess the job value
-    run: |
-      echo "this value is access from job-output: ${{ needs.job-output-create.outputs.date_version}}"
+    steps:
+      - name: Run the job if branch is main
+        if: github.ref == 'refs/heads/main'
+        run: echo "this workflow only run when branch is main"
