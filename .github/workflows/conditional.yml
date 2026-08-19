@@ -16,6 +16,7 @@ jobs:
 
       - name: failing step
         run: edho "hei"
+        continue-on-error: true
 
       - name: run when previous step failed
         if: failure()
@@ -27,4 +28,4 @@ jobs:
       - name: Run this when event is push
         if: github.event == 'push'
         run: |
-          echo "deploy-job run because event is push: ${{ github.envet}} "
+          echo "deploy-job run because event is push: ${{ github.event}} "
