@@ -1,0 +1,25 @@
+name: Set Date Job Output
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job-output-create:
+    runs-on: ubuntu-latest
+    outputs:
+      date_version: ${{ steps.date.outputs.today}}
+
+    steps:
+      - name: Genrate step Output
+        id: date
+        run: |
+          TODAY=$(date +%y-%m-%d)
+          echo "today=$(TODAY)" >> "$GITHUB_OUTPUT"
+
+  job-output-access:
+    runs-on: ubuntu-latest
+    needs: job-output-create
+    steps:
+      - name: Acess the job value
+        run: |
+          echo "this value is access from job-output: ${{ needs.job-output-create.outputs.date_version}}"
