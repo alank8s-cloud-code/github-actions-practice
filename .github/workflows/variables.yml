@@ -34,3 +34,6 @@ jobs:
         run: |
           echo "The commit SHA is: ${{ github.sha }}"
           echo "The run was trigged by: ${{ github.actor }}"
+          echo "what is this: ${{ github.repository }}"
+          echo "what is this: ${{ github.ref }}"
+          echo "what is this: ${{ github.event_name }}"
