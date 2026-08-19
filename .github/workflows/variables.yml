@@ -29,3 +29,8 @@ jobs:
           echo "APP_NAME: $APP_NAME"
           echo "ENVIRONMENT: $ENVIRONMENT"
           echo "VERSION: $VERSION"
+
+      - name: Print Commit SHA and Actor
+        run: |
+          echo "The commit SHA is: ${{ github.sha }}"
+          echo "The run was trigged by: ${{ github.actor }}"
