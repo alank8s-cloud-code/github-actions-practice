@@ -1,4 +1,4 @@
-name: Set Date Job Output
+name: job Output
 
 on:
   workflow_dispatch:
