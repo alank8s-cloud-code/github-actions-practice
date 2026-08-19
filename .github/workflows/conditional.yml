@@ -19,7 +19,6 @@ jobs:
         continue-on-error: true
 
       - name: run when previous step failed
-        if: failure()
         run: echo "This step run because previous step is failed"
 
   deploy-job:
