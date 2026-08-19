@@ -14,7 +14,7 @@ jobs:
         id: date
         run: |
           TODAY=$(date +%y-%m-%d)
-          echo "today=$(TODAY)" >> "$GITHUB_OUTPUT"
+          echo "today=$TODAY" >> "$GITHUB_OUTPUT"
 
   job-output-access:
     runs-on: ubuntu-latest
