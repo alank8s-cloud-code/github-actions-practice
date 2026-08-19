@@ -11,4 +11,20 @@ jobs:
     steps:
       - name: Run the job if branch is main
         if: github.ref == 'refs/heads/main'
-        run: echo "this workflow only run when branch is main"
+        run: |
+          echo "this workflow only run when branch is main: ${{github.ref}}"
+
+      - name: failing step
+        run: edho "hei"
+
+      - name: run when previous step failed
+        if: failure()
+        run: echo "This step run because previous step is failed"
+
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run this when event is push
+        if: github.event == 'push'
+        run: |
+          echo "deploy-job run because event is push: ${{ github.envet}} "
