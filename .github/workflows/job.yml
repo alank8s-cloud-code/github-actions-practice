@@ -2,14 +2,6 @@ name: Set Date Job Output
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: "select"
-        required: true
-        type: choice
-        options:
-          - dev
-          - test
 
 jobs:
   job-output-create:
