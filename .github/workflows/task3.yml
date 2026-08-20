@@ -1,4 +1,4 @@
-name: Secrets on
+name: Artifact workflow
 
 on:
   workflow_dispatch:
