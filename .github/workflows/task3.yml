@@ -1,0 +1,27 @@
+name: Secrets on
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Generate the log file
+        run: |
+          cat > app.log <<EOF
+          Application started
+          User logged in
+          Database connected
+          Application stopped
+          EOF
+          echo "log saved successfully"
+
+      - name: upload the log file
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-log-file
+          path: app.log
