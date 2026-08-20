@@ -17,3 +17,6 @@ jobs:
           else
             echo "The secret is set: false"
           fi
+      - name: Access the secret value
+        run: |
+          echo "Secret value is: ${{ Secrets.MY_SECRET_MESSAGE }}"
