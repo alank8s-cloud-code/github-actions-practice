@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v6
 
-      - name: Docker Hub account verify
+      - name: Docker Hub account credential check
         run: |
           if [ -n "$DOCKER_USERNAME" ]; then
             echo "The Docker USERNAME is set: true"
@@ -27,3 +27,5 @@ jobs:
           else
             echo "DOCKER CREDENTIAL NOT SAVE IN SECRETES"
           fi
+
+          echo " Successfully Check DOCKER HUB credential are stored inside the GitHub Secret"
