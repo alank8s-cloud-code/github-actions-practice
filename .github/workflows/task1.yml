@@ -1,0 +1,29 @@
+name: Secrets as Environment Variables
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Secret:
+    env:
+      DOCKER_USERNAME: $${ secrets.DOCKER_USERNAME }
+      DOCKER_TOKEN: $${ secrets.DOCKER_TOKEN }
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Docker Hub account verify
+        run: |
+          if [ -n "$DOCKER_USERNAME" ]; then
+            echo "The Docker USERNAME is set: true"
+
+            if [-n "$DOCKER_TOKEN" ]; then
+              echo "The Docker TOKEN is set: true"
+            else
+              echo "The Docker TOKEN is set: false"
+            fi
+
+          else
+            echo "DOCKER CREDENTIAL NOT SAVE IN SECRETES"
+          fi
