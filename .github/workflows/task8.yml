@@ -1,4 +1,4 @@
-name: Cache practice
+name: Cache practice for CI
 
 on:
   workflow_dispatch:
