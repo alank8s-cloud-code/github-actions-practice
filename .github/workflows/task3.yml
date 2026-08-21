@@ -12,7 +12,7 @@ jobs:
 
       - name: Generate the log file
         run: |
-          cat > app.log <<EOF
+          cat > app-log.txt<<EOF
           Application started
           User logged in
           Database connected
@@ -24,4 +24,4 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: app-log-file
-          path: app.log
+          path: app-log.txt
