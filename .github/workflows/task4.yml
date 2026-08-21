@@ -1,0 +1,42 @@
+name: Artifact Between Two jobs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Generate the log file
+        run: |
+          cat > app-log.txt<<EOF
+          Application started
+          User logged in
+          Database connected
+          Application stopped
+          EOF
+          echo "log saved successfully"
+
+      - name: upload the log file
+        uses: actions/upload-artifact@v6
+        with:
+          name: app-log-file
+          path: app-log.txt
+
+  use-artifact:
+    needs: create-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the log file
+        uses: actions/download-artifact@v6
+        with:
+          name: app-log-file
+          path: download-output
+
+      - name: Display the Download log content
+        run: |
+          echo "=== Reading Download Artifact ==="
+          cat download-output/app-log.txt
