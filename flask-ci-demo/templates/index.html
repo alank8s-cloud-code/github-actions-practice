@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First CI Pipeline</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #94a3b8;
+            margin-bottom: 45px;
+            font-size: 17px;
+        }
+
+        .pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 210px;
+            min-height: 150px;
+            padding: 25px 20px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+            transition: 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2);
+        }
+
+        .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .box h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .box p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .arrow {
+            font-size: 35px;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .success {
+            border-color: #22c55e;
+        }
+
+        .success h2 {
+            color: #4ade80;
+        }
+
+        .task {
+            margin-top: 45px;
+            color: #cbd5e1;
+            font-size: 16px;
+        }
+
+        .task strong {
+            color: #38bdf8;
+        }
+
+        @media (max-width: 800px) {
+            .pipeline {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🚀 My First CI Pipeline</h1>
+
+        <p class="description">
+            This Flask application is being tested by GitHub Actions.
+        </p>
+
+        <div class="pipeline">
+
+            <div class="box">
+                <div class="icon">💻</div>
+                <h2>Code Push</h2>
+                <p>Developer pushes code to GitHub</p>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">
+                <div class="icon">⚙️</div>
+                <h2>Build</h2>
+                <p>GitHub Actions builds the application</p>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="box">
+                <div class="icon">🧪</div>
+                <h2>Test</h2>
+                <p>Automated tests run in CI</p>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="box success">
+                <div class="icon">✅</div>
+                <h2>CI Passed</h2>
+                <p>All tests passed successfully</p>
+            </div>
+
+        </div>
+
+        <p class="task">
+            <strong>Task:</strong> Run Real Tests in CI
+        </p>
+
+    </div>
+
+</body>
+
+</html>
