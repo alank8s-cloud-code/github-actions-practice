@@ -12,7 +12,9 @@ jobs:
       - name: Generate date
         id: date
         run: |
-          echo "date=$(date)" >> $GITHUB_OUTPUT
+          DATE=$(date)
+          echo "date=$DATE"
+          echo "date=$DATE" >> $GITHUB_OUTPUT
 
   use-output:
     runs-on: ubuntu-latest
