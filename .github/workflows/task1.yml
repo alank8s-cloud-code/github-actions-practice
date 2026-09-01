@@ -1,0 +1,34 @@
+name: Multiple-job workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Which environment do you want to deploy"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build job
+        run: echo "Building the app"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Test the app
+        run: echo "Running tests"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Deploy the app
+        run: echo "Deploying"
