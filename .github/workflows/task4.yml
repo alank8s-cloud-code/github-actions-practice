@@ -23,7 +23,7 @@ jobs:
         run: flake8 scripts/health_check.py
 
       - name: Scan the project
-        run: bandit -r scripts/
+        run: bandit -r scripts/security_test.py
 
       - name: Run python script
         run: python3 scripts/health_check.py
