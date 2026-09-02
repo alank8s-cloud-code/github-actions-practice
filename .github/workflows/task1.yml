@@ -18,3 +18,6 @@ jobs:
           else
             echo "The secret is set: false"
           fi
+      - name: Intentionally view the secret message
+        run: |
+          echo "My secret message: $MY_SECRET_MESSAGE"
