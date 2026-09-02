@@ -22,5 +22,10 @@ jobs:
       - name: Lint Python code
         run: flake8 scripts/health_check.py
 
+      - name: Intentionally break the workflow
+        run: |
+          echo "Stop"
+          exit 1
+
       - name: Run python script
         run: python3 scripts/health_check.py
