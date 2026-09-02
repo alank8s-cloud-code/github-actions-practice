@@ -5,7 +5,7 @@ def find_user(username):
     connection = sqlite3.connect("users.db")
     cursor = connection.cursor()
 
-    query = f"SELECT * FROM users WHERE username = ?"
+    query = "SELECT * FROM users WHERE username = ?"
     cursor.execute(query)
 
     return cursor.fetchall()
