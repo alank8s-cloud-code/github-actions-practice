@@ -20,4 +20,4 @@ jobs:
           fi
       - name: Intentionally view the secret message
         run: |
-          echo "My secret message: $MY_SECRET_MESSAGE"
+          echo "My secret message: ${{ secrets.MY_SECRET_MESSAGE }}"
