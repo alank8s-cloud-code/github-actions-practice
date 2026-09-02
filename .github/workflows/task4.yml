@@ -17,10 +17,13 @@ jobs:
       - name: Install dependency flake8
         run: |
           python3 -m pip install --upgrade pip 
-          pip install flake8
+          pip install flake8 && pip install bandit
 
       - name: Lint Python code
         run: flake8 scripts/health_check.py
+
+      - name: Scan the project
+        run: bandit -r scripts/
 
       - name: Run python script
         run: python3 scripts/health_check.py
