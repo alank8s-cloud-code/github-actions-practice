@@ -1,0 +1,36 @@
+name: Log workflow
+
+on: workflow_dispatch
+
+jobs:
+  generate-log:
+    runs-on: Ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Generate the log files
+        run: |
+          echo "Workflow started" > app.log
+          echo "Checking application..." >> app.log
+          echo "Application check completed" >> app.log
+
+      - name: Upload log
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-logs
+          path: app.log
+
+  read-log:
+    runs-on: Ubuntu-latest
+    needs: generate-log
+    steps:
+      - name: Download the log
+        uses: actions/download-artifact@v4
+        with:
+          name: workflow-logs
+          path: download-output
+
+      - name: print log
+        run: |
+          cat download-output/app.log
