@@ -1,6 +1,9 @@
 name: Conditional Workflow
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   Conditional-job:
@@ -10,3 +13,33 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           echo "This step is running on the Branch: ${{ github.ref }}"
+
+      - name: Intentional failure
+        run: |
+          echo "This step will fail"
+          exit 1
+
+      - name: Run only when previous step fail
+        if: ${{ failure() }}
+        run: |
+          echo "The previous step failed"
+
+  push-job:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+
+    steps:
+      - name: show event
+        run: |
+          echo "This job runs only on push"
+          echo "Event: ${{ github.event_name }}"
+
+      - name: Intentional failure
+        continue-on-error: true
+        run: |
+          echo "This step will fail"
+          exit 1
+
+      - name: Next step
+        run: |
+          echo "Job continue"
