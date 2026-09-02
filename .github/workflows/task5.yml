@@ -1,10 +1,6 @@
 name: smart-pipeline
 
-on:
-  push:
-    branches:
-      - main
-
+on: workflow_dispatch
 jobs:
   lint-job:
     runs-on: ubuntu-latest

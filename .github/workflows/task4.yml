@@ -1,9 +1,6 @@
 name: Conditional Workflow
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   Conditional-job:
