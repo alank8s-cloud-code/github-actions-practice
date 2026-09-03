@@ -1,11 +1,6 @@
-name: Build the image
+name: docker-publish
 
-on:
-  workflow_dispatch
-  # push:
-  #   branches:
-  #     - main
-  #     - feature-login
+on: workflow_dispatch
 
 jobs:
   Build-image:
