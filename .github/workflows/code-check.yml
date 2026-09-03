@@ -1,9 +1,6 @@
 name: Code Linting
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   lint:
