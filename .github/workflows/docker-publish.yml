@@ -3,8 +3,7 @@ name: Build the image
 on: workflow_dispatch
 
 jobs:
-  lint:
-    name: Lint Code
+  Build-image:
     runs-on: ubuntu-latest
 
     steps:
