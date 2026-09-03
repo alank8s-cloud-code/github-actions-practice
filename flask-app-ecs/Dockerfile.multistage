@@ -44,4 +44,4 @@ EXPOSE 80
 
 # Run the application
 
-CMD ["-m", "gunicorn", "--bind", "0.0.0.0:80", "run:app"]
+CMD ["-m", "gunicorn", "--bind", "0.0.0.0:80", "app:app"]
