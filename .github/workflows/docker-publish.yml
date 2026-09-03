@@ -3,6 +3,7 @@ name: Build the image
 on:
   push:
     branches:
+      - main
       - feature-login
 
 jobs:
