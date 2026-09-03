@@ -19,10 +19,16 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
+      - name: Get Short commit SHA
+        id: vars
+        run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Build the image and push to registry
         uses: docker/build-push-action@v7
         with:
           context: ./flask-app-ecs
           file: ./flask-app-ecs/Dockerfile.multistage
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+            ${{ secrets.DOCKER_USERNAME }}/flask-app:sha-${{ steps.vars.outputs.sha }}
