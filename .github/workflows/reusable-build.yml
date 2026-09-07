@@ -45,7 +45,7 @@ jobs:
         id: version
         run: |
           SHORT_SHA=$(git rev-parse --short HEAD )
-          VERSION:"v1.0-${SHORT_SHA}"
+          VERSION="v1.0-${SHORT_SHA}"
 
           echo "Build version: $VERSION"
           echo "build_version=$VERSION" >> "$GITHUB_OUTPUT"
