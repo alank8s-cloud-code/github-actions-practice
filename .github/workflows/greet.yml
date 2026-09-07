@@ -1,0 +1,21 @@
+name: Greeting
+
+on: workflow_dispatch
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Use setup and Greet
+        id: greet
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: alan
+          language: en
+
+      - name: Checkout
+        run: |
+          echo "Greeted: ${{ steps.greet.outputs.greeted }}"
