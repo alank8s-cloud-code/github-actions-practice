@@ -30,10 +30,10 @@ runs:
         elif [ "${{ inputs.language }}" = "fr" ]; then
           echo "Hello, ${{ inputs.name }}!"
 
-        elif[ "${{ inputs.language }}" = "en" ]; then
+        elif [ "${{ inputs.language }}" = "en" ]; then
           echo "Banjor, ${{ inputs.name }}!"
 
-        elif[ "${{ inputs.language }}" = "es" ]; then
+        elif [ "${{ inputs.language }}" = "es" ]; then
           echo "Holla, ${{ inputs.name }}!"
         else 
           echo "Hello, ${{ inputs.name }}!"
