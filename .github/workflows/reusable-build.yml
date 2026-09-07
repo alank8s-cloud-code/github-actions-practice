@@ -2,35 +2,50 @@ name: Reusable Workflow
 
 on:
   workflow_call:
-    inputs:
-      app_name:
-        description: "web-app"
-        required: true
-        type: string
+    outputs:
+      build_version:
+        description: "Generated build version"
+        value: ${{ jobs.ci.outputs.build_version }}
+    # inputs:
+    #   app_name:
+    #     description: "web-app"
+    #     required: true
+    #     type: string
 
-      environment:
-        description: "production"
-        required: true
-        type: string
+    #   environment:
+    #     description: "production"
+    #     required: true
+    #     type: string
 
-    secrets:
-      docker_token:
-        required: true
+    # secrets:
+    #   docker_token:
+    #     required: true
 
 jobs:
   ci:
     runs-on: ubuntu-latest
+    outputs:
+      build_version: ${{ steps.version.outputs.build_version }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@v6
 
-      - name: Build the app with environment
-        run: echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"
+      # - name: Build the app with environment
+      #   run: echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"
 
-      - name: Check docker token
+      # - name: Check docker token
+      #   run: |
+      #     if [ -n "${{ secrets.DOCKER_TOKEN }}" ]; then
+      #       echo "Docker token is set: true"
+      #     else
+      #       echo "Docker token is set: false"
+      #     fi
+
+      - name: Generate build version
+        id: version
         run: |
-          if [ -n "${{ secrets.DOCKER_TOKEN }}" ]; then
-            echo "Docker token is set: true"
-          else
-            echo "Docker token is set: false"
-          fi
+          SHORT_SHA=$(git rev-parse --short HEAD )
+          VERSION:"v1.0-${SHORT_SHA}"
+
+          echo "Build version: $VERSION"
+          echo "build_version=$VERSION" >> "$GITHUB_OUTPUT"
