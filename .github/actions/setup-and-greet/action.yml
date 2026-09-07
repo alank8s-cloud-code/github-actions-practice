@@ -24,7 +24,7 @@ runs:
       id: greeting
       shell: bash
       run: |
-        if[ "${{ inputs.language }}"= "en" ]; then
+        if [ "${{ inputs.language }}"= "en" ]; then
           echo "Hello, ${{ inputs.name }}!"
 
         elif [ "${{ inputs.language }}"= "fr" ]; then
