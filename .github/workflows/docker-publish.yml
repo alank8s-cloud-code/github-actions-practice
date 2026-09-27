@@ -1,11 +1,7 @@
 name: Build the image
 
 on:
-  push:
-    branches:
-      - main
-      - feature-login
-
+  workflow_dispatch: 
 jobs:
   Build-image:
     runs-on: ubuntu-latest
