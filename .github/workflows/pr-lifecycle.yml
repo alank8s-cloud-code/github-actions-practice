@@ -1,8 +1,9 @@
 name: pull Request Lifecycle
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
+  workflow_dispatch
+  # pull_request:
+  #   types: [opened, synchronize, reopened, closed]
 
 jobs:
   pf-info:

@@ -1,24 +1,68 @@
-name: pull Request Lifecycle
+name: PR Validation Checks
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
 
 jobs:
-  pf-info:
+  file-size-check:
+    name: Check File Sizes
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show PR event information
-        run: |
-          echo "Event type: ${{ github.event.action }}"
-          echo "PR title: ${{ github.event.pull_request.title }}"
-          echo "PR author: ${{ github.event.pull_request.user.login }}"
-          echo "Source branch: ${{ github.event.pull_request.head.ref }}"
-          echo "Target branch: ${{ github.event.pull_request.base.ref }}"
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
-      - name: PR was merged
-        if: github.event.action == 'closed' && github.event.pull_request.merged == true
+      - name: Check for files larger than 1 MB
         run: |
-          echo "The Pull Request was merged successfully!" 
-          echo "PR: ${{ github.event.pull_request.title }}"
+          echo "Checking files larger than 1 MB..."
+
+          large_files=$(find . -type f -not -path './.git/*' -size +1M)
+
+          if [ -n "$large_files" ]; then
+            echo "❌ Files larger than 1 MB found:"
+            echo "$large_files"
+            exit 1
+          fi
+
+          echo "✅ All files are within the 1 MB limit."
+
+  branch-name-check:
+    name: Check Branch Name
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check branch name
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        run: |
+          echo "Checking branch: $BRANCH_NAME"
+
+          if [[ "$BRANCH_NAME" =~ ^(feature|fix|docs)/.+ ]]; then
+            echo "✅ Branch name is valid."
+          else
+            echo "❌ Invalid branch name: $BRANCH_NAME"
+            echo "Branch must start with:"
+            echo "  feature/"
+            echo "  fix/"
+            echo "  docs/"
+            exit 1
+          fi
+
+  pr-body-check:
+    name: Check PR Description
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR body
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [ -z "$PR_BODY" ]; then
+            echo "::warning::PR description is empty. Please add a description."
+          else
+            echo "✅ PR description is present."
+          fi
