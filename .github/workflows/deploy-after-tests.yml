@@ -6,14 +6,25 @@ on:
     types: [completed]
 
 jobs:
+  check-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CI result
+        run: |
+          if [ "${{ github.event.workflow_run.conclusion}}" != "success" ]; then
+            echo  "::warning::CI workflow failed. Deployment will not continue."
+            exit 1
+            
+          else
+            echo "✅ CI workflow succeeded."
+            echo "Deployment can continue."
+          fi
+
   deploy:
+    needs: check-ci
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: code Checkout
-        uses: actions/checkout@v6
-
-      - name: Deploy application
+      - name: Deploy
         run: |
-          echo "CI workflow succeeded."
-          echo "Starting deployment..."
+          echo "🚀 Deploying application..."
