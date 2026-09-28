@@ -1,0 +1,18 @@
+name: Test workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code Checkout
+        uses: actions/checkout@v6
+
+      - name: greeting message
+        run: |
+          echo "Hello brother "
+          echo "Test workflow successfully  run"
