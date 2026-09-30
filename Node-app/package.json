@@ -1,0 +1,15 @@
+{
+    "name": "ci-cd-node-app",
+    "version": "1.0.0",
+    "description": "Simple CI/CD Web App",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}

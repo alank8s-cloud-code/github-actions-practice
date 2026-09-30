@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Deployment</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 40px;
+            background: linear-gradient(90deg, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #a855f7;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            color: #c084fc;
+        }
+
+        p {
+            color: #cbd5f5;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 15px;
+            width: 180px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            border: 1px solid #a855f7;
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Automate Code Deployment Using CI/CD Pipeline </h1>
+
+        <div class="badge">
+            Objective: Build & Deploy Web App using GitHub Actions EC2 server
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Version Control</h3>
+                <p>GitHub</p>
+            </div>
+
+            <div class="card">
+                <h3>CI/CD</h3>
+                <p>GitHub Actions</p>
+            </div>
+
+            <div class="card">
+                <h3>Runtime</h3>
+                <p>Node.js</p>
+            </div>
+
+            <div class="card">
+                <h3>Container Tool</h3>
+                <p>Docker</p>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
