@@ -5,13 +5,6 @@ on:
     branches:
       - main
 
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - synchronize
-
 jobs:
   build_test:
     uses: ./.github/workflows/reusable-build-test.yml
@@ -23,6 +16,7 @@ jobs:
     uses: ./.github/workflows/reusable-docker.yml
     with:
       image_name: alank8scloud/flask-app
+      docker_username: ${{ vars.DOCKER_USERNAME }}
     secrets: inherit
 
   deploy:
