@@ -48,7 +48,7 @@ jobs:
           file: ./flask-app-ecs/Dockerfile.multistage
           push: true
           tags: |
-            ${{ inputs.image_name }:${{ inputs.tag }}
+            ${{ inputs.image_name }}:${{ inputs.tag }}
 
       - name: Set Image URL
         id: image
