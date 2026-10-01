@@ -4,7 +4,7 @@ name: Reusable Build & Test
 # This workflow is reusable.
 # Another workflow can call this workflow.
 on:
-  workflow_call:
+  workflow_dispatch:
     # Inputs received from the workflow that calls this workflow
     inputs:
       # Python version to install
