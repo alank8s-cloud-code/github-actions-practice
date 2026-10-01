@@ -1,0 +1,35 @@
+name: Main Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build_test:
+    uses: ./.github/workflows/reusable-build-test.yml
+    with:
+      run_tests: true
+
+  docker:
+    needs: build_test
+    uses: ./.github/workflows/reusable-docker.yml
+    with:
+      image_name: alank8scloud/flask-app
+    secrets: inherit
+
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy Image
+        run: |
+          echo "Deploying image: ${{ needs.docker.outputs.image_url }} to production"
