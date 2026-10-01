@@ -58,4 +58,8 @@ jobs:
       - name: Set Image URL
         id: image
         run: |
-          echo "image_url=${{ inputs.image_name }}:sha-${{ steps.sha.outputs.short_sha }}" >> "$GITHUB_OUTPUT"
+          IMAGE_URL="${{ inputs.image_name }}:sha-${{ steps.sha.outputs.short_sha }}" 
+
+          echo "IMAGE_URL=$IMAGE_URL"
+
+          echo "image_url=$IMAGE_URL" >> "$GITHUB_OUTPUT"
