@@ -8,6 +8,11 @@ on:
         required: true
         type: string
 
+      docker_username:
+        description: "Docker Hub username"
+        required: true
+        type: string
+
     secrets:
       DOCKER_TOKEN:
         required: true
