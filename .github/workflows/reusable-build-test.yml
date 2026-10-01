@@ -1,48 +1,69 @@
-name: Build & Test
+# Name shown in GitHub Actions
+name: Reusable Build & Test
 
+# This workflow is reusable.
+# Another workflow can call this workflow.
 on:
-  workflow_dispatch:
+  workflow_call:
+    # Inputs received from the workflow that calls this workflow
     inputs:
+      # Python version to install
       python_version:
         description: "Python version to use"
         required: false
         type: string
         default: "3.12"
 
-      run-tests:
+      # Whether tests should be executed
+      run_tests:
         description: "Whether to run tests"
         required: false
         type: boolean
         default: true
 
+    # Outputs returned to the workflow that calls this workflow
     outputs:
+      # Final test result
       test_result:
         description: "Result of the tests"
-        value: ${{ jobs.build-test.outputs.test_result }}
 
+        # Get the output from the build_test job
+        value: ${{ jobs.build_test.outputs.test_result }}
+
+# Jobs section
 jobs:
-  build-test:
+  # Build and test job
+  build_test:
+    # GitHub-hosted runner
     runs-on: ubuntu-latest
+
+    # Job output
+    # Get test_result from the test step
     outputs:
       test_result: ${{ steps.test.outputs.test_result }}
 
     steps:
+      # 1. Download repository code
       - name: Checkout Repository
         uses: actions/checkout@v6
 
-      - name: Setup python version
+      # 2. Install the requested Python version
+      - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: ${{ inputs.python_version}}
+          python-version: ${{ inputs.python_version }}
 
+      # 3. Upgrade pip
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
 
-      - name: Install the dependency
+      # 4. Install project dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install -r flask-app-ecs/requirements.txt
-          echo "Dependency install successfully"
+          echo "Dependencies installed successfully"
 
+      # 5. Run tests when run_tests is true
       - name: Run Tests
         id: test
         if: ${{ inputs.run_tests }}
@@ -50,7 +71,9 @@ jobs:
           python -m pytest
           echo "test_result=passed" >> "$GITHUB_OUTPUT"
 
-      - name: Tests skipped
+      # 6. If tests are disabled, return "passed"
+      # because there were no tests requested to fail.
+      - name: Tests Skipped
         if: ${{ !inputs.run_tests }}
         run: |
           echo "Tests were skipped"
