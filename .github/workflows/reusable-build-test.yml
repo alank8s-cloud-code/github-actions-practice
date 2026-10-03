@@ -60,7 +60,7 @@ jobs:
       - name: Run Tests
         if: ${{ inputs.run_tests }}
         run: |
-          python -m pytest  flask-app-ecs/test_app.py
+          python -m pytest  flask-app-ecs/tests/test_app.py
 
       # 6. Set test result
       - name: Set Test Result
